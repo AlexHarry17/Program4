@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Coins {
     int[] changeArray = new int[100];
 
@@ -5,7 +7,7 @@ public class Coins {
         return changeArray;
     }
 
-    public int[] makeChange(int[] coinOptions, int changeAmount) {
+    public void makeChange(int[] coinOptions, int changeAmount) {
         Arrays.sort(coinOptions);   //sorts the coin options from least to greatest
         this.setupChangeArray(coinOptions);
 
