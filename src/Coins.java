@@ -1,7 +1,10 @@
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Coins {
     int[] changeArray = new int[100];
+    private ArrayList<Integer> changeList = null;
 
     public int[] getChangeArray() {    //getter for change array;
         return changeArray;
@@ -13,7 +16,7 @@ public class Coins {
 
     }
 
-    public void setupChangeArray(int[] coinOptions) {
+    private void setupChangeArray(int[] coinOptions) {
         changeArray[0] = 0; //instantiates the 0 spot
         changeArray[1] = 1; //instantiates the 1 spot
         for (int i = 2; i < changeArray.length; i++) {  //loops through the change array starting at location 2
@@ -25,4 +28,14 @@ public class Coins {
             }
         }
     }
+
+    public ArrayList<Integer> getChange(int makeChangeof) {  //method that will find the change and added it to the array
+        while (makeChangeof >= 0) {//loops until correct change has been made
+            changeList.add(changeArray[makeChangeof]);  //adds the coin used at that array location to an arraylist
+            makeChangeof -= changeArray[makeChangeof];  //removes coin used from makeChangeof to update the array location on the next loop
+
+        }
+        return changeList;
+    }
+
 }
