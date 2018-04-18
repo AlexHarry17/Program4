@@ -10,10 +10,10 @@ public class Coins {
         return changeArray;
     }
 
-    public void makeChange(int[] coinOptions, int changeAmount) {
+    public  int[]  makeChange(int[] coinOptions, int changeAmount) {
         Arrays.sort(coinOptions);   //sorts the coin options from least to greatest
         this.setupChangeArray(coinOptions);
-
+        return null;
     }
 
     private void setupChangeArray(int[] coinOptions) {
