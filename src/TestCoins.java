@@ -1,16 +1,12 @@
-import org.junit.jupiter.api.BeforeEach;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
-import org.junit.jupiter.api.BeforeAll;
+
 
 class TestCoins {
 	private static Coins testCoins;
-	
-	/*@BeforeEach
-	static void setUpBeforeClass() throws Exception {
-		testCoins = new Coins();
-	}*/
+
 	
     @Test
     void testInClassExampleMakeChangeOf16(){
@@ -142,4 +138,5 @@ class TestCoins {
 		// test correct coins return
 		assertEquals(expected,   testCoins.makeChange(coins, 20));
 	}
+
 }

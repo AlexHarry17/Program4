@@ -3,7 +3,7 @@ import java.util.Arrays;
 
 public class Coins {
     int[] changeArray = new int[100];
-    private ArrayList<Integer> changeList = null;
+    private ArrayList<Integer> changeList = new ArrayList<>();
 
     public int[] getChangeArray() {    //getter for change array;
         return changeArray;
