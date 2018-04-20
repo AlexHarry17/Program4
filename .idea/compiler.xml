@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavacSettings">
-    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="program4round3" options="--add-exports=jdk.xml.ws/com.sun.tools.internal.ws.wsdl.parser=ALL-UNNAMED" />
-    </option>
-  </component>
-</project>

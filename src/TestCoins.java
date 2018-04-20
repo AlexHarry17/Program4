@@ -1,6 +1,5 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static junit.framework.TestCase.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 import org.junit.jupiter.api.BeforeAll;
@@ -8,18 +7,22 @@ import org.junit.jupiter.api.BeforeAll;
 class TestCoins {
 	private static Coins testCoins;
 	
-	@BeforeAll
+	/*@BeforeEach
 	static void setUpBeforeClass() throws Exception {
 		testCoins = new Coins();
-	}
+	}*/
 	
     @Test
     void testInClassExampleMakeChangeOf16(){
-    	fail("Not yet implemented");
+		testCoins = new Coins();
+
+		fail("Not yet implemented");
     }
     
     @Test 
 	void testEmptyInput() {
+		testCoins = new Coins();
+
 		int[] input = {};
 		// test exception is thrown when given no coin denominations
 		Exception e = assertThrows(IllegalArgumentException.class, () -> {  testCoins.makeChange(input, 221); } );
@@ -29,7 +32,9 @@ class TestCoins {
     
     @Test
     void testNullInput() {
-    	// test  exception is thrown when given null
+		testCoins = new Coins();
+
+		// test  exception is thrown when given null
 		Exception e = assertThrows(IllegalArgumentException.class, () -> {  testCoins.makeChange(null, 221); } );
 		// test correct error message is generated
 		assertEquals("Must have at least one coin type", e.getMessage());
@@ -37,7 +42,9 @@ class TestCoins {
     
     @Test
     void testReallyLargeInput() {
-    	Random rand = new Random();
+		testCoins = new Coins();
+
+		Random rand = new Random();
     	int[] coins = new int[rand.nextInt(rand.nextInt(100) * rand.nextInt(100)) + 2];
     	int change = rand.nextInt(90000);
     	// set up coins
@@ -61,7 +68,9 @@ class TestCoins {
     
     @Test
     void testImpossibleInput() {
-    	int[] coins = {5, 17};
+		testCoins = new Coins();
+
+		int[] coins = {5, 17};
     	int change = 13;
 		
 		// correct change is impossible since there are no "1"s
@@ -78,6 +87,8 @@ class TestCoins {
 	
 	@Test
 	void testAll5s() {
+		testCoins = new Coins();
+
 		int[] coins = {1, 5, 17};
 		int[] expected = {5, 5, 5};
 		int change = 15;
@@ -95,6 +106,8 @@ class TestCoins {
 	
 	@Test
 	void testMixedReturn() {
+		testCoins = new Coins();
+
 		int[] coins = {1, 5, 10, 25};
 		int[] expected = {25, 10, 1, 1};
 		int change = 37;
@@ -112,6 +125,8 @@ class TestCoins {
 	
 	@Test
 	void testGreedyFails() {
+		testCoins = new Coins();
+
 		int[] coins = {1, 5, 11};
 		// this is the correct answer but a greedy algorithm will give {11, 5, 1, 1, 1, 1}
 		int[] expected = {5, 5, 5, 5};
