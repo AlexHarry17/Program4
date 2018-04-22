@@ -108,5 +108,4 @@ class TestCoins {
 		// test correct coins return
 		assertArrayEquals(expected, result);
 	}
-
 }
