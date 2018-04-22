@@ -2,12 +2,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Coins {
-    int[] changeArray = new int[100];
-    private ArrayList<Integer> changeList = new ArrayList<>();
-
-    public int[] getChangeArray() {    //getter for change array;
-        return changeArray;
-    }
+    private int []min_coins;
+    private int coin_option_size;
+    private ArrayList<Integer> coins_in_optimal_solution= new ArrayList<>();
 
     public  int[]  makeChange(int[] coinOptions, int changeAmount) {
     	// we need some coins to be able to make change...
@@ -16,38 +13,67 @@ public class Coins {
 		}
 		else {
 	        Arrays.sort(coinOptions);   //sorts the coin options from least to greatest
-	        this.setupChangeArray(coinOptions);
-	        
-	        ArrayList<Integer> changeList = getChange(changeAmount);
-	        int[] change_int_list = new int[changeList.size()];
-	        // translate the array list to an int array
-	        for (int i=0; i<changeList.size(); i++) {
-	        	change_int_list[i] = changeList.get(i);
-	        }
-	        // return the change
-	        return change_int_list;
+
+            //calls method to get coin_option_size
+            coin_option_size = getCoin_option_size(coinOptions);
+
+            //instantiate array to hold minimum number of coins
+            min_coins = new int[changeAmount+1];
+
+            // set index 0 to 0 since no coins can derive from 0
+            min_coins[0] = 0;
+            //sets all entries of array to MAX_Value, but entry 0
+            this.setup_change_array_to_max_int(min_coins);
+            this.fill_min_array(changeAmount, coinOptions);
 		}
+		return min_coins;
     }
 
-    private void setupChangeArray(int[] coinOptions) {
-        changeArray[0] = 0; //instantiates the 0 spot
-        //changeArray[1] = 1; //instantiates the 1 spot
-        for (int i = 1; i < changeArray.length; i++) {  //loops through the change array starting at location 2
-            for (int j = coinOptions.length - 1; j >= 0; j--) { //loops through the denominations, starting with the highest
-                if (i % coinOptions[j] == 0) { //checks what denomination is divisible by the location i in the array
-                    changeArray[i] = coinOptions[j];    //sets location of change array to the denomination chosen
-                    break;  //breaks out of inner loop once location in array is set
+    /** Sets all values in min_coins array, but index 0, to MAX_Value
+     * for future comparison.
+     *
+     * @param min_coins
+     */
+    private void setup_change_array_to_max_int(int [] min_coins) {
+        //iterate through all spots in array but index 0 to set to MAX_Value
+        for(int i = 1; i <= min_coins.length-1; i++) {
+            min_coins[i] = Integer.MAX_VALUE;
+        }
+    }
+
+    /**
+     *  This method is the dynamic process. It find the optimal solutions and adds to an array of minimum number of coins.
+     * @param makeChangeof
+     * @param coinOptions
+     */
+    public void fill_min_array(int makeChangeof, int [] coinOptions) {
+        //iterates through all the change but entry 0
+        for (int i = 1; i <= makeChangeof; i++) {
+            //iterates through all the coin options
+            for (int j = 0; j < coinOptions.length; j++) {
+
+                //if the coin at entry j is < or equal to the current change to be made...
+                if (coinOptions[j] <= i) {
+
+                    //set a temp variable that contains the optimal solution to the current change to be made
+                    int temp = min_coins[i - coinOptions[j]]; // in the minimum coins array, subtract the coin option to find previous optimal solution
+
+                    //
+                    if (temp != Integer.MAX_VALUE && temp + 1 < min_coins[i]) {
+                        // add +1 to temp because it is adding another coin to previous optimal solutions
+                        min_coins[i] = temp + 1;
+                        coins_in_optimal_solution.add(coinOptions[j]);
+                    }
                 }
             }
         }
     }
 
-    public ArrayList<Integer> getChange(int makeChangeof) {  //method that will find the change and added it to the array
-        while (makeChangeof > 0) {//loops until correct change has been made
-            changeList.add(changeArray[makeChangeof]);  //adds the coin used at that array location to an arraylist
-            makeChangeof -= changeArray[makeChangeof];  //removes coin used from makeChangeof to update the array location on the next loop
-        }
-        return changeList;
+    public int getCoin_option_size(int[] coin_options){
+        return coin_options.length;
+    }
+    public int get_optimal_solution(int change){
+      return  min_coins[change];
     }
 
 }
