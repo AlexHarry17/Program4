@@ -4,7 +4,19 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.Random;
 
-
+/*
+ * Authors: Alex Harry, Cory Johns, Justin Keeling
+ * Date: 4/23/2018
+ * Overview: TestCoins contains 6 basic test cases for Coins.java.
+ * The tests it runs are as follows:
+ * - tests to make sure the correct Exception is thrown when the denominations array is empty
+ * - runs same kind of test as above but for a null denominations array
+ * - tests that the correct Exception is thrown when the change is not positive
+ * - tests that the correct change is made for really large input
+ * - tests that the minimum change is returned for a homogeneous case
+ * - also for a non-homogeneous case
+ * - tests that the minimum change is returned for a input that is known to fail greedy algorithms
+ */
 class TestCoins {
 	private static Coins testCoins;
 	
@@ -28,6 +40,15 @@ class TestCoins {
 		Exception e = assertThrows(IllegalArgumentException.class, () -> {  testCoins.makeChange(null, 221); } );
 		// test correct error message is generated
 		assertEquals("Must have at least one coin type", e.getMessage());
+    }
+    
+    @Test
+    void testNegativeChange() {
+    	int[] coins = {1, 4, 6, 11};
+		// test  exception is thrown when given a negative change value
+		Exception e = assertThrows(IllegalArgumentException.class, () -> {  testCoins.makeChange(coins, -13); } );
+		// test correct error message is generated
+		assertEquals("Change must be positive", e.getMessage());
     }
     
     @Test

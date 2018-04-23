@@ -1,5 +1,13 @@
 import java.util.Arrays;
 
+/*
+ * Authors: Alex Harry, Cory Johns, Justin Keeling
+ * Date: 4/23/2018
+ * Overview: Coins contains all methods to find the minimum number of coins (and what coins) for a given change.
+ * Coins will return an int[] containing the minimum number of coins in order 
+ * from largest to smallest for a given change value and denominations set.
+ * Coins accomplishes this with a dynamic programming approach, using the solutions to the sub problems to solve the next larger one.
+ */
 public class Coins {
 	// a list of the minimum number of coins for each change amount given by the index
     private int[] min_number_of_coins;
@@ -10,6 +18,9 @@ public class Coins {
     	// we need some coins to be able to make change...
 		if (coinOptions == null || coinOptions.length == 0) {
 			throw new IllegalArgumentException("Must have at least one coin type");
+		}
+		else if (changeAmount < 0) {
+			throw new IllegalArgumentException("Change must be positive");
 		}
 		else {
 	        Arrays.sort(coinOptions);   //sorts the coin options from least to greatest
