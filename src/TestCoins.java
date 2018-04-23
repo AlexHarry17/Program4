@@ -1,15 +1,13 @@
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.Random;
 
 /*
  * Authors: Alex Harry, Cory Johns, Justin Keeling
  * Date: 4/23/2018
- * Overview: TestCoins contains 6 basic test cases for Coins.java.
+ * Overview: TestCoins contains 9 basic test cases for Coins.java.
  * The tests it runs are as follows:
  * - tests to make sure the correct Exception is thrown when the denominations array is empty
  * - runs same kind of test as above but for a null denominations array
@@ -18,6 +16,8 @@ import java.util.Random;
  * - tests that the minimum change is returned for a homogeneous case
  * - also for a non-homogeneous case
  * - tests that the minimum change is returned for a input that is known to fail greedy algorithms
+ * - tests that {25, 5} is returned for change of 30 instead of {10, 10, 10} given standard denominations
+ * - tests the example given in class
  */
 class TestCoins {
     private static Coins testCoins;
