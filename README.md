@@ -1,7 +1,7 @@
 # Program4 #
-Authors: Alex Harry, Cory Johns, Justin Keeling
-Date: 4/23/2018
-Overview:
+**Authors: Alex Harry, Cory Johns, Justin Keeling**
+**Date: 4/23/2018**
+**Overview:**
 Coins contains all methods to find the minimum number of coins (and what coins) for a given change. Coins will return an int[] containing the minimum number of coins in order from largest to smallest for a given change value and denominations set. Coins accomplishes this with a dynamic programming approach, using the solutions to the sub problems to solve the next larger one.
 TestCoins contains 9 basic test cases for Coins.java. The tests it runs are as follows:
 * tests to make sure the correct Exception is thrown when the denominations array is empty 
